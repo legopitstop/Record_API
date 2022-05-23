@@ -7,6 +7,10 @@
 [![github](https://img.shields.io/github/issues-raw/legopitstop/Record_API)](https://github.com/legopitstop/Record_API/issues "Go to Github")
 
 Endless amount of music discs!
+## Navigation
+- [app](app/README.md)
+- [example](example/README.md)
+
 ## Pack Data
 
 | Key                | Value    |
