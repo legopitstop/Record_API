@@ -3,10 +3,10 @@
 # Called by: record:pre_tick
 
 # Jukebox tick
-execute as @e[tag=Jukebox] at @s run function record:jukebox/tick
+execute as @e[type=marker,tag=Jukebox] at @s run function record:jukebox/tick
 
 # Place jukebox
-execute as @e[tag=SetJukebox] at @s if block ~ ~ ~ command_block run function record:jukebox/place
+execute as @e[type=marker,tag=SetJukebox] at @s if block ~ ~ ~ command_block run function record:jukebox/place
 
 # Creeper Loot
 execute as @e[type=item,nbt={Item:{tag:{DropCreeperDisc:1b}}}] at @s run function record:creeper/load

@@ -1,0 +1,10 @@
+{
+    "music_disc.5": {
+        "sounds": [
+            {
+                "name": "example:records/5",
+                "stream": true
+            }
+        ]
+    }
+}

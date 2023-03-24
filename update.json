@@ -5,6 +5,9 @@
     "1.18": {
         "1.0.0": "Initial release."
     },
+    "1.19.4": {
+        "1.1.0": "# CHANGELOG v1.1.0\n## General\n- Updated for 1.19.4\n- Added support for Music Disc 5"
+    },
     "promos": {
         "1.18-recommended": "1.0.0"
     }
