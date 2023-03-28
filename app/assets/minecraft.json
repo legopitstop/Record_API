@@ -1,0 +1,124 @@
+{
+    "items": [
+        {
+            "id": "music_disc_13",
+            "name": "13",
+            "artest": "C418",
+            "texture": "items/music_disc_13",
+            "power_level": 1,
+            "obtain": "creeper"
+        },
+        {
+            "id": "music_disc_cat",
+            "name": "cat",
+            "artest": "C418",
+            "texture": "items/music_disc_cat",
+            "power_level": 2,
+            "obtain": "creeper"
+        },
+        {
+            "id": "music_disc_blocks",
+            "name": "blocks",
+            "artest": "C418",
+            "texture": "items/music_disc_blocks",
+            "power_level": 3,
+            "obtain": "creeper"
+        },
+        {
+            "id": "music_disc_chirp",
+            "name": "chirp",
+            "artest": "C418",
+            "texture": "items/music_disc_chirp",
+            "power_level": 4,
+            "obtain": "creeper"
+        },
+        {
+            "id": "music_disc_far",
+            "name": "far",
+            "artest": "C418",
+            "texture": "items/music_disc_far",
+            "power_level": 5,
+            "obtain": "creeper"
+        },
+        {
+            "id": "music_disc_mall",
+            "name": "mall",
+            "artest": "C418",
+            "texture": "items/music_disc_mall",
+            "power_level": 6,
+            "obtain": "creeper"
+        },
+        {
+            "id": "music_disc_mellohi",
+            "name": "mellohi",
+            "artest": "C418",
+            "texture": "items/music_disc_mellohi",
+            "power_level": 7,
+            "obtain": "creeper"
+        },
+        {
+            "id": "music_disc_stal",
+            "name": "stal",
+            "artest": "C418",
+            "texture": "items/music_disc_stal",
+            "power_level": 8,
+            "obtain": "creeper"
+        },
+        {
+            "id": "music_disc_strad",
+            "name": "strad",
+            "artest": "C418",
+            "texture": "items/music_disc_strad",
+            "power_level": 9,
+            "obtain": "creeper"
+        },
+        {
+            "id": "music_disc_ward",
+            "name": "ward",
+            "artest": "C418",
+            "texture": "items/music_disc_ward",
+            "power_level": 10,
+            "obtain": "creeper"
+        },
+        {
+            "id": "music_disc_11",
+            "name": "11",
+            "artest": "C418",
+            "texture": "items/music_disc_11",
+            "power_level": 11,
+            "obtain": "creeper"
+        },
+        {
+            "id": "music_disc_wait",
+            "name": "wait",
+            "artest": "C418",
+            "texture": "items/music_disc_wait",
+            "power_level": 12,
+            "obtain": "creeper"
+        },
+        {
+            "id": "music_disc_pigstep",
+            "name": "pigstep",
+            "artest": "Lena Raine",
+            "texture": "items/music_disc_pigstep",
+            "power_level": 13,
+            "obtain": "creeper"
+        },
+        {
+            "id": "music_disc_otherside",
+            "name": "otherside",
+            "artest": "Lena Raine",
+            "texture": "items/music_disc_otherside",
+            "power_level": 14,
+            "obtain": "creeper"
+        },
+        {
+            "id": "music_disc_5",
+            "name": "5",
+            "artest": "Samuel Aberg",
+            "texture": "items/music_disc_5",
+            "power_level": 15,
+            "obtain": "creeper"
+        }
+    ]
+}

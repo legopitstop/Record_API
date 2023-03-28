@@ -1,0 +1,129 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "default": {},
+    "definitions": {
+        "Asset": {
+            "type": "object",
+            "default": {},
+            "required": [
+                "hash",
+                "path"
+            ],
+            "properties": {
+                "hash": {
+                    "description": "The cached version of the file.",
+                    "type": "string"
+                },
+                "path": {
+                    "description": "Path to the origional file.",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    "required": [
+        "name",
+        "icon",
+        "descType",
+        "version",
+        "namespace",
+        "description",
+        "items"
+    ],
+    "properties": {
+        "name": {
+            "description": "The name of the pack",
+            "type": "string"
+        },
+        "icon": {
+            "description": "The packs icon.",
+            "$ref": "#/definitions/Asset"
+        },
+        "version": {
+            "description": "The version of the pack",
+            "type": "string"
+        },
+        "namespace": {
+            "description": "The namespace for the pack",
+            "type": "string"
+        },
+        "descType": {
+            "description": "How to generate the description? RAW - Will add the text in as a string. JSON - Will add the text as rawjson",
+            "enum": [
+                "String",
+                "TextComponent"
+            ]
+        },
+        "description": {
+            "description": "The packs description",
+            "type": "string"
+        },
+        "items": {
+            "description": "A list of all the disc items.",
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "object",
+                "default": {},
+                "required": [
+                    "name",
+                    "artest",
+                    "id",
+                    "power_level",
+                    "custom_model_data",
+                    "nbt",
+                    "obtain",
+                    "texture",
+                    "sound"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "The name of the item",
+                        "type": "string"
+                    },
+                    "custom_model_data": {
+                        "description": "The CustommodelData for the item.",
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 500
+                    },
+                    "artest": {
+                        "description": "The name of the artest that created this music.",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "The custom id of the item",
+                        "type": "string"
+                    },
+                    "power_level": {
+                        "description": "The amount of power that this disc outputs, Determins what vanilla disk to use.",
+                        "type": "string"
+                    },
+                    "nbt": {
+                        "description": "Extra nbt data for the item.",
+                        "type": "string"
+                    },
+                    "obtain": {
+                        "description": "The method to obtain this item.",
+                        "enum": [
+                            "none",
+                            "creeper"
+                        ]
+                    },
+                    "texture": {
+                        "description": "The texture for the item.",
+                        "$ref": "#/definitions/Asset"
+                    },
+                    "sound": {
+                        "description": "The sound for the item.",
+                        "$ref": "#/definitions/Asset"
+                    }
+                },
+                "additionalProperties": false
+            }
+        }
+    },
+    "additionalProperties": false
+}
