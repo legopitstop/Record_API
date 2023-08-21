@@ -2503,10 +2503,6 @@
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.1264.0_x64__qbz5n2kfra8p0\\Lib\\inspect.py',
    'PYMODULE'),
-  ('ipaddress',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.1264.0_x64__qbz5n2kfra8p0\\Lib\\ipaddress.py',
-   'PYMODULE'),
   ('jinja2',
    'C:\\Users\\1589l\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\jinja2\\__init__.py',
    'PYMODULE'),
@@ -2950,6 +2946,12 @@
    'PYMODULE'),
   ('numpy.ctypeslib',
    'C:\\Users\\1589l\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\numpy\\ctypeslib.py',
+   'PYMODULE'),
+  ('numpy.distutils',
+   'C:\\Users\\1589l\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\numpy\\distutils\\__init__.py',
+   'PYMODULE'),
+  ('numpy.distutils.cpuinfo',
+   'C:\\Users\\1589l\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\numpy\\distutils\\cpuinfo.py',
    'PYMODULE'),
   ('numpy.fft',
    'C:\\Users\\1589l\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\numpy\\fft\\__init__.py',

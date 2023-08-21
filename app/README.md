@@ -7,4 +7,5 @@ Windows and Google Chrome may mark this as potentially dangerous, The executable
 ## Releases
 | Version | Changelog | Downloads |
 |--|--|--|
+| v0.0.2 (latest)  | Inital Release| [Universal](https://github.com/legopitstop/Record_API/raw/main/app/Output/Music%20Disc%20Studio_0.0.2.exe)|
 | v0.0.1  | Inital Release| [Universal](https://github.com/legopitstop/Record_API/raw/main/app/Output/Music%20Disc%20Studio_0.0.1.exe)|

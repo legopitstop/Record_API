@@ -1,7 +1,8 @@
 # TODO
 - Add audio converter. Convert to OGG and Channel 1.
-- Change default.ogg to a non-copyrighted track.
 - Add minecraft music disc sounds and textures.
+
+- Make this project a PyPi Package. `mcdisc`
 
 ## Obtainability
 Ways to obtain music discs. Implement in both App and API.

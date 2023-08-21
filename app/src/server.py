@@ -10,7 +10,7 @@ import enum
 import nbtlib
 
 from util import convert_image_to_base64, convert_file_to_base64, save_base64, convert_base64_to_image, fetch_config
-from client import ClientItem, ClientProject, ClientAsset
+from client import ClientItem, ClientProject, ClientAsset, AssetType
 
 # **For Annotations Only**
 from tkinter import StringVar, IntVar, messagebox, filedialog
@@ -19,10 +19,6 @@ from PIL import Image, ImageFile
 logger = logging.getLogger('Server')
 
 LOCAL = os.path.dirname(os.path.realpath(__file__))
-
-class AssetType(enum.Enum):
-    TEXTURE = 'texture'
-    SOUND = 'sound'
 
 class Asset(ClientAsset):
     def __init__(self, project, type:AssetType, path:str=None, source:str=None, size:tuple=None):
@@ -799,7 +795,7 @@ class Project(PartialProject, ClientProject):
         dp_name = self.client.format('dp', name=self.name, version=self.version)
         dp_path = os.path.join(path, dp_name)
         os.makedirs(os.path.join(dp_path, 'data', 'record', 'tags', 'functions'), exist_ok=True)
-        os.makedirs(os.path.join(dp_path, 'data', self.namespace, 'functions'), exist_ok=True)
+        os.makedirs(os.path.join(dp_path, 'data', self.namespace, 'functions', 'record'), exist_ok=True)
         os.makedirs(os.path.join(dp_path, 'data', self.namespace, 'loot_tables', 'item'), exist_ok=True)
         os.makedirs(os.path.join(dp_path, 'data', self.namespace, 'tags', 'functions'), exist_ok=True)
         
@@ -807,6 +803,9 @@ class Project(PartialProject, ClientProject):
             data = {
                 'pack': {
                     'pack_format': int(self.client.c.getItem('dp_version')),
+                    'supported_formats': {
+                        'min_inclusive': 16
+                    },
                     'version': self.version,
                     'description': self.render_description() # Should get converted to JSON if type is set to TextComponent
                 }
@@ -816,14 +815,17 @@ class Project(PartialProject, ClientProject):
         # Resourcepack
         rp_name = self.client.format('rp', name=self.name, version=self.version)
         rp_path = os.path.join(path, rp_name)
-        os.makedirs(os.path.join(rp_path, 'resources', 'record', 'models', 'item'), exist_ok=True)
-        os.makedirs(os.path.join(rp_path, 'resources', self.namespace, 'lang'), exist_ok=True)
-        os.makedirs(os.path.join(rp_path, 'resources', self.namespace, 'sounds', 'records'), exist_ok=True)
-        os.makedirs(os.path.join(rp_path, 'resources', self.namespace, 'textures', 'item'), exist_ok=True)
+        os.makedirs(os.path.join(rp_path, 'assets', 'record', 'models', 'item'), exist_ok=True)
+        os.makedirs(os.path.join(rp_path, 'assets', self.namespace, 'lang'), exist_ok=True)
+        os.makedirs(os.path.join(rp_path, 'assets', self.namespace, 'sounds', 'records'), exist_ok=True)
+        os.makedirs(os.path.join(rp_path, 'assets', self.namespace, 'textures', 'item'), exist_ok=True)
         with open(os.path.join(rp_path, 'pack.mcmeta'), 'w') as manifest:
             data = {
                 'pack': {
                     'pack_format': int(self.client.c.getItem('rp_version')),
+                    'supported_formats': {
+                        'min_inclusive': 16
+                    },
                     'version': self.version,
                     'description': self.render_description() # Should get converted to JSON if type is set to rawjson
                 }
@@ -831,20 +833,20 @@ class Project(PartialProject, ClientProject):
             manifest.write(json.dumps(data))
         if self.icon!=None: self.icon.export(os.path.join(rp_path, 'pack.png'))
         # Both for items
-        LANG = {"___comment": "Generated using Music Disc Studio"}
+        LANG = {}
         SOUNDS = {}
-        CREEPER_TAG = {'values': []}
+        REGISTER_CREEPER_DROPS = "# Desc: Registers all discs that should drop\n#\n# Called by: #record:register_creeper_drops\n\n"
+
         ALL_TAG = {'values': []}
         for item in self.items:
-            item:Item = item # TEMP
             mc_item = self.client.mc_disc_power(item.power_level)
-            # Datapack
+            # DATAPACK
             with open(os.path.join(dp_path, 'data', self.namespace, 'functions', '%s.mcfunction'%(item.id)), 'w') as func:
+
+                # Obtain
                 if item.obtain=='creeper':
-                    obtain = 'scoreboard players add #total creeper_drop_music_disc 1\n'
-                    CREEPER_TAG['values'].append('%s:%s'%(self.namespace, item.id))
-                else: obtain = ''
-                FUNCTION = '# Desc: Summons the custom item\n#\n# Called by: Player\n'+obtain+'loot spawn ~ ~ ~ loot %s:item/%s'%(self.namespace, item.id)
+                    REGISTER_CREEPER_DROPS += 'data modify storage record:loot_tables creeper append value "%s:item/%s"\n'%(self.namespace, item.id)
+                FUNCTION = '# Desc: Summons the custom item\n#\n# Called by: Player\nloot spawn ~ ~ ~ loot %s:item/%s'%(self.namespace, item.id)
                 func.write(FUNCTION)
                 ALL_TAG['values'].append('%s:%s'%(self.namespace, item.id))
             # Loot table
@@ -852,7 +854,7 @@ class Project(PartialProject, ClientProject):
                 id = nbtlib.String(self.namespace),
                 record = nbtlib.Compound(
                     power_level = nbtlib.Int(item.power_level),
-                    command=nbtlib.String(f"execute as @e[tag=Jukebox,limit=1,sort=nearest] at @s run playsound {self.namespace}:music_disc.{item.id.replace('music_disc_', '')}' record @a ~ ~ ~ 4 1 0")
+                    sound=nbtlib.String(f"{self.namespace}:music_disc.{item.id.replace('music_disc_', '')}")
                 ),
                 HideFlags = nbtlib.Int(32),
                 CustomModelData= nbtlib.Int(item.custom_model_data),
@@ -892,11 +894,12 @@ class Project(PartialProject, ClientProject):
                         }
                     ]
                 }
-                file.write(json.dumps(table))                    
-            # Resroucepack
-            item.sound.export(os.path.join(rp_path, 'resources', self.namespace, 'sounds', 'records', '%s.ogg'%(item.id.replace('music_disc_',''))))
-            item.texture.export(os.path.join(rp_path, 'resources', self.namespace, 'textures', 'item', '%s.png'%(item.id)))
-            with open(os.path.join(rp_path, 'resources', 'record', 'models', 'item', '%s_%s.json'%(mc_item, item.custom_model_data)), 'w') as model:
+                file.write(json.dumps(table))
+
+            # RESOURCE PACK
+            item.sound.export(os.path.join(rp_path, 'assets', self.namespace, 'sounds', 'records', '%s.ogg'%(item.id.replace('music_disc_',''))))
+            item.texture.export(os.path.join(rp_path, 'assets', self.namespace, 'textures', 'item', '%s.png'%(item.id)))
+            with open(os.path.join(rp_path, 'assets', 'record', 'models', 'item', '%s_%s.json'%(mc_item, item.custom_model_data)), 'w') as model:
                 data = {'parent': 'minecraft:item/generated','textures': {'layer0': '%s:item/%s'%(self.namespace, item.id)}}
                 model.write(json.dumps(data))
             LANG['item.%s.%s'%(self.namespace, item.id)] = 'Music Disc'
@@ -909,10 +912,11 @@ class Project(PartialProject, ClientProject):
                     }
                 ]
             }
-        with open(os.path.join(dp_path, 'data', 'record', 'tags', 'functions', 'creeper.json'), 'w') as tag: tag.write(json.dumps(CREEPER_TAG))
+        with open(os.path.join(dp_path, 'data', self.namespace, 'functions', 'record', 'register_creeper_drops.mcfunction'), 'w') as tag: tag.write(REGISTER_CREEPER_DROPS)
+        with open(os.path.join(dp_path, 'data', 'record', 'tags', 'functions', 'register_creeper_drops.json'), 'w') as tag: tag.write(json.dumps({'values': [f"{self.namespace}:record/register_creeper_drops"]}))
         with open(os.path.join(dp_path, 'data', self.namespace, 'tags', 'functions', 'all.json'), 'w') as tag: tag.write(json.dumps(ALL_TAG))
-        with open(os.path.join(rp_path, 'resources', self.namespace, 'lang', '%s.json'%(self.client.c.getItem('locale'))), 'w') as file: file.write(json.dumps(LANG))
-        with open(os.path.join(rp_path, 'resources', self.namespace, 'sounds.json'), 'w') as file: file.write(json.dumps(SOUNDS))
+        with open(os.path.join(rp_path, 'assets', self.namespace, 'lang', '%s.json'%(self.client.c.getItem('locale'))), 'w') as file: file.write(json.dumps(LANG))
+        with open(os.path.join(rp_path, 'assets', self.namespace, 'sounds.json'), 'w') as file: file.write(json.dumps(SOUNDS))
         # ZIP packs
         if self.client.c.getItem('archiveOutput')=='True':
             shutil.make_archive(dp_path, 'zip', dp_path)
