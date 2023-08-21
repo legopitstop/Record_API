@@ -27,8 +27,8 @@ DisableProgramGroupPage=yes
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
 OutputBaseFilename=Music Disc Studio_{#MyAppVersion}
-SetupIconFile=C:\Users\1589l\Documents\GitHub\Minecraft\Record_API\app\assets\icon.ico  
-UninstallDisplayIcon=C:\Users\1589l\Documents\GitHub\Minecraft\Record_API\app\assets\icon.ico
+SetupIconFile=C:\Users\1589l\Documents\GitHub\Minecraft\Record_API\app\src\resources\icon.ico  
+UninstallDisplayIcon=C:\Users\1589l\Documents\GitHub\Minecraft\Record_API\app\src\resources\icon.ico
 Compression=lzma
 SolidCompression=yes
 ChangesAssociations=yes

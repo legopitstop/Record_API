@@ -1,1 +1,24 @@
-{"pack":{"pack_format":8,"version":[1,0,0],"description":[{"text":"Endless amount of music discs! ","color":"gray"},{"text":"Legopitstop","color":"#e86608","underlined":true}]}}
+{
+    "pack": {
+        "pack_format": 17,
+        "supported_formats": {
+            "min_inclusive": 16
+        },
+        "version": [
+            1,
+            2,
+            0
+        ],
+        "description": [
+            {
+                "text": "Endless amount of music discs! ",
+                "color": "gray"
+            },
+            {
+                "text": "Legopitstop",
+                "color": "#e86608",
+                "underlined": true
+            }
+        ]
+    }
+}

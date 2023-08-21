@@ -4,6 +4,7 @@ import json, os
 # List of all vanilla models
 items = [
     'music_disc_5',
+    'music_disc_relic',
     'music_disc_11',
     'music_disc_13',
     'music_disc_blocks',

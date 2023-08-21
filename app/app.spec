@@ -5,10 +5,10 @@ block_cipher = None
 
 
 a = Analysis(
-    ['C:\\Users\\1589l\\Documents\\GitHub\\Minecraft\\Record_API\\app/app.pyw'],
+    ['C:\\Users\\1589l\\Documents\\GitHub\\Minecraft\\Record_API\\app/src/app.pyw'],
     pathex=[],
     binaries=[],
-    datas=[('C:\\Users\\1589l\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\customtkinter', 'customtkinter/'), ('C:\\Users\\1589l\\Documents\\GitHub\\Minecraft\\Record_API\\app/assets/icon.ico', '.'), ('C:\\Users\\1589l\\Documents\\GitHub\\Minecraft\\Record_API\\app/assets', 'assets/')],
+    datas=[('C:\\Users\\1589l\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\customtkinter', 'customtkinter/'), ('C:\\Users\\1589l\\Documents\\GitHub\\Minecraft\\Record_API\\app/src/resources/icon.ico', '.'), ('C:\\Users\\1589l\\Documents\\GitHub\\Minecraft\\Record_API\\app/src/resources', 'resources/')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -37,7 +37,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['C:\\Users\\1589l\\Documents\\GitHub\\Minecraft\\Record_API\\app\\assets\\icon.ico'],
+    icon=['C:\\Users\\1589l\\Documents\\GitHub\\Minecraft\\Record_API\\app\\src\\resources\\icon.ico'],
 )
 coll = COLLECT(
     exe,

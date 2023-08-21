@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "TextComponent",
+    "type": [
+        "object",
+        "array"
+    ],
+    "default": {},
+    "anyOf": [
+        {
+            "requred": [
+                "text"
+            ]
+        },
+        {
+            "requred": [
+                "translate"
+            ]
+        }
+    ],
+    "properties": {
+        "text": {
+            "type": "string"
+        },
+        "translate": {
+            "type": "string"
+        },
+        "color": {
+            "type": "string"
+        },
+        "italic": {
+            "type": "boolean",
+            "default": true
+        },
+        "underlined": {
+            "type": "boolean",
+            "default": true
+        },
+        "strikethrough": {
+            "type": "boolean",
+            "default": true
+        }
+    },
+    "items": {
+        "$ref": "#"
+    },
+    "additionalProperties": false
+}

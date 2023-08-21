@@ -16,8 +16,8 @@ Endless amount of music discs!
 | Key                | Value    |
 |--------------------|----------|
 | namespace          | `record` |
-| pack_version       | `1.0.0`  |
-| mc_version         | `1.18.2` |
+| pack_version       | `1.2.0`  |
+| mc_version         | `1.20.2` (23w23a) |
 | multiplayer_tested | `no`     |
 | has_config         | `no`     |
 
